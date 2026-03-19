@@ -151,7 +151,7 @@ Access Analyzer automatically identifies trends and possible issues in your acce
 Security Token Service (STS) allows you to request temporary credentials for IAM users or roles
     - useful for federated access, cross-account access, and temporary access for applications
 
-AWS Best Practices:
+AWS Best Practices: (link: https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html)
 
     - require human users to use federations (third party identity provider) to access AWS with temp creds
     - require workloads to use temporary credentials with IAM roles to access AWS

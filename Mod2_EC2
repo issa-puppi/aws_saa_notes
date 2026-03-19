@@ -1,0 +1,89 @@
+Amazon EC2 (Elastic Compute Cloud):
+    - EC2 instances are virtual servers in the cloud running in AWS data centers
+    - EC2 instances are attached to the network via Elasntic Network Interfaces (ENIs)
+    - EC2 instances are launched in piblic and private subnets in a VPC (Virtual Private Cloud)
+        * public subnet: has a route to the Internet via an Internet Gateway (IGW)
+        * private subnet: does not have a route to the Internet, but can access the Internet via a NAT Gateway (NGW) in a public subnet
+    - EBS (Elastic Block Store) provides persistent block storage attached to EC2 instances
+    - Everything within the instance is the responsibility of the customer, including:
+        * the operating system, software, and security patches
+    - instances are flexible and can be resized, stopped, started, and terminated as needed
+    - cost is based on the instance type, usage hours, and additional features (e.g., EBS volumes, data transfer)
+        * incoming data transfer is free, while outgoing data transfer is charged based on the amount of data transferred out of AWS (no charge for data transfer between EC2 instances in the same region but different availability zones will be charged)
+
+EC2 Instance Types:
+    - General Purpose: balanced compute, memory, and networking resources (e.g., t3, m5)
+    - Compute Optimized: high compute (CPU) performance (e.g., c5)
+    - Memory Optimized: high memory performance (e.g., r5)
+    - Storage Optimized: high storage performance (e.g., i3)
+    - Accelerated Computing: hardware accelerators (GPU) for specific workloads (e.g., p3 for machine learning)
+
+m5.large:
+    - m is the family name (memory optimized)
+    - 5 is the generation (5th generation)
+    - large is the size (2 vCPUs)
+
+Elastic Network Interfaces (ENIs):
+    - if you launch an EC2 instance in a public subnet, it will have a public IP address and a private IP address
+    - if you launch an EC2 instance in a private subnet, it will only have a private IP address
+    - ENIs can be attached from subnets in the same VPC, but not from different VPCs (within the same AZ)
+    - ENIs can be attached and detached from EC2 instances, allowing for flexibility in network configuration
+    - ENIs can have security groups attached to them, which control inbound and outbound traffic
+
+Public IP Address:
+    - released when the instance is stopped or terminated
+    - used in public subnets to allow instances to communicate with the Internet
+    - charged based on the amount of time the instance is running with a public IP address
+    - associated with the private IP address of the instance
+    - cannot be moved to another instance or ENI
+
+Private IP Address:
+    - retained when the instance is stopped or terminated
+    - used in Private and Public subnets 
+
+Elastic IP Address (EIP):
+    - Static public IP address that can be associated with an EC2 instance or ENI
+    - Charged when not associated with a running instance (idle EIP)
+    - Associated with the private IP address of the instance
+    - Can be moved between instances or ENIs within the same region
+    - Useful for maintaining a consistent public IP address for applications that require it 
+        (e.g., web servers, databases)
+
+Public = static and temporary 
+Private = static only
+Elastic IP = static and can be moved between instances
+
+ENI, ENA and EFA:
+    - ENI (Elastic Network Interface): standard network interface for EC2 instances.
+        Can be used with all instance types
+
+    - ENA (Elastic Network Adapter): high-performance network interface for EC2 instances.
+        Higher bandwidth and lower latency than ENI, must choose supported instance types (e.g., C5n, M5n, R5n)
+
+    - EFA (Elastic Fabric Adapter): specialized network interface for HPC workloads that require low latency 
+        and high throughput, specialized for High Performance Computing (HPC) workloads, Message Passing Interfaces (MPI) and Machine Learning (ML) use cases.
+        Tightly coupled applications, can use all instance types, but only supported in certain regions and availability zones (e.g., us-east-1, us-west-2)
+
+        *MPI (Message Passing Interface) is a standardized and portable message-passing system designed to function on parallel computing architectures. It allows processes to communicate with each other by sending and receiving messages, enabling the development of parallel applications that can run efficiently on distributed memory systems.
+
+EBS Volumes are displayed as local drives on the EC2 instance, but they are actually network-attached storage 
+    - EBS volumes must be in the same availability zone as the EC2 instance they are attached to
+    - EBS volumes can be detached and reattached to different instances within the same availability zone
+    - EBS volumes have different performance characteristics based on the volume type (e.g., gp2, io1, st1)
+    - EBS volumes are charged based on the type, amount of storage provisioned and the amount of I/O operations     
+      performed on the volume
+
+gp3 = most workloads, general purpose, cost effective
+gp2 = general purpose, older generation
+io2 = high performance, low latency, critical applications, more expensive
+io1 = databases requiring high IOPS, older generation
+st1 = streaming, big data, log processing, low cost, not suitable for boot volumes
+sc1 = cold storage, infrequent access, lowest cost, not suitable for boot volumes
+magnetic = older generation, not recommended for new applications, not suitable for boot volumes
+
+Ephemeral storage - memory is lost when the chip is powered off (non-persistent storage)
+    - instance store volumes are ephemeral storage that is physically attached to the host server
+    - instance store volumes are only available for certain instance types (e.g., i3, d2)
+    - instance store volumes are ideal for temporary storage of information that changes frequently, such as 
+      buffers, caches, scratch data, and other temporary content
+
