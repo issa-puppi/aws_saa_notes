@@ -1,4 +1,4 @@
-Amazon EC2 (Elastic Compute Cloud):
+# Amazon EC2 (Elastic Compute Cloud):
     - EC2 instances are virtual servers in the cloud running in AWS data centers
     - EC2 instances are attached to the network via Elasntic Network Interfaces (ENIs)
     - EC2 instances are launched in piblic and private subnets in a VPC (Virtual Private Cloud)
@@ -12,7 +12,7 @@ Amazon EC2 (Elastic Compute Cloud):
         * incoming data transfer is free, while outgoing data transfer is charged based on the amount of data transferred out of 
         AWS (no charge for data transfer between EC2 instances in the same region but different availability zones will be charged)
 
-EC2 Instance Types:
+# EC2 Instance Types:
     - General Purpose: balanced compute, memory, and networking resources (e.g., t3, m5)
     - Compute Optimized: high compute (CPU) performance (e.g., c5)
     - Memory Optimized: high memory performance (e.g., r5)
@@ -24,25 +24,25 @@ m5.large:
     - 5 is the generation (5th generation)
     - large is the size (2 vCPUs)
 
-Elastic Network Interfaces (ENIs):
+# Elastic Network Interfaces (ENIs):
     - if you launch an EC2 instance in a public subnet, it will have a public IP address and a private IP address
     - if you launch an EC2 instance in a private subnet, it will only have a private IP address
     - ENIs can be attached from subnets in the same VPC, but not from different VPCs (within the same AZ)
     - ENIs can be attached and detached from EC2 instances, allowing for flexibility in network configuration
     - ENIs can have security groups attached to them, which control inbound and outbound traffic
 
-Public IP Address:
+# Public IP Address:
     - released when the instance is stopped or terminated
     - used in public subnets to allow instances to communicate with the Internet
     - charged based on the amount of time the instance is running with a public IP address
     - associated with the private IP address of the instance
     - cannot be moved to another instance or ENI
 
-Private IP Address:
+# Private IP Address:
     - retained when the instance is stopped or terminated
     - used in Private and Public subnets 
 
-Elastic IP Address (EIP):
+# Elastic IP Address (EIP):
     - Static public IP address that can be associated with an EC2 instance or ENI
     - Charged when not associated with a running instance (idle EIP)
     - Associated with the private IP address of the instance
@@ -50,11 +50,11 @@ Elastic IP Address (EIP):
     - Useful for maintaining a consistent public IP address for applications that require it 
         (e.g., web servers, databases)
 
-Public = static and temporary 
-Private = static only
-Elastic IP = static and can be moved between instances
+# Public = static and temporary 
+# Private = static only
+# Elastic IP = static and can be moved between instances
 
-ENI, ENA and EFA:
+# ENI, ENA and EFA:
     - ENI (Elastic Network Interface): standard network interface for EC2 instances.
         Can be used with all instance types
 
@@ -71,7 +71,7 @@ ENI, ENA and EFA:
         computing architectures. It allows processes to communicate with each other by sending and receiving messages, enabling 
         the development of parallel applications that can run efficiently on distributed memory systems.
 
-EBS Volumes are displayed as local drives on the EC2 instance, but they are actually network-attached storage 
+# EBS Volumes are displayed as local drives on the EC2 instance, but they are actually network-attached storage 
     - EBS volumes must be in the same availability zone as the EC2 instance they are attached to
     - EBS volumes can be detached and reattached to different instances within the same availability zone
     - EBS volumes have different performance characteristics based on the volume type (e.g., gp2, io1, st1)
@@ -86,13 +86,13 @@ st1 = streaming, big data, log processing, low cost, not suitable for boot volum
 sc1 = cold storage, infrequent access, lowest cost, not suitable for boot volumes
 magnetic = older generation, not recommended for new applications, not suitable for boot volumes
 
-Ephemeral storage - memory is lost when the chip is powered off (non-persistent storage)
+# Ephemeral storage - memory is lost when the chip is powered off (non-persistent storage)
     - instance store volumes are ephemeral storage that is physically attached to the host server
     - instance store volumes are only available for certain instance types (e.g., i3, d2)
     - instance store volumes are ideal for temporary storage of information that changes frequently, such as 
       buffers, caches, scratch data, and other temporary content
 
-When launching an instance the steps are:
+# When launching an instance the steps are:
     1. Select an instance type which defines the hardware profile and therefore the cost 
        (e.g., m5.large)
     2. Choose an Amazon Machine Image (AMI) which defines the operating system and software configuration 
@@ -100,8 +100,7 @@ When launching an instance the steps are:
        These are backed by snapshorts which are point-in-time copies of EBS volumes, and can be used to 
        create new AMIs or restore existing ones
 
-  HOL Lab notes:
-//---------------
+# HOL Lab notes:
 
 I can find the SSH command for my private key in thr EC2 console under the "Connect" section of the instance details. 
 It will look something like this: ssh -i /path/to/my-key.pem ec2-user@<public-ip-address>
@@ -116,12 +115,12 @@ such as starting, stopping, and terminating instances, as well as creating and m
 Remember to terminatet instances when you are done to avoid unnecessary costs, 
 and to detach and delete any EBS volumes that are no longer needed.
 
-Instance Metadata is data about the instance that can be accessed from within the instance itself
+# Instance Metadata is data about the instance that can be accessed from within the instance itself
     - curl http://169.254.169.254/latest/meta-data to access instance metadata
     - curl http://169.254.169.254/latest/meta-data/local-ipv4 to get the private IP address of the instance
     - curl http://169.254.169.254/latest/meta-data/public-ipv4 to get the public IP address of the instance
 
-IMDSv1 vs IMDSv2 (Instance Metadata Service):
+# IMDSv1 vs IMDSv2 (Instance Metadata Service):
     - IMDSv1: The original version, older and less secure
     - IMDSv2: The newer version, more secure, requires session tokens for authorization, 
               and is recommended for all new applications
@@ -129,3 +128,51 @@ IMDSv1 vs IMDSv2 (Instance Metadata Service):
 Default is IMDSv1, but some instances might disable it as a default option, so 
 it's important to check the instance metadata options when launching an instance.
 
+# EC2 User Data is code that is run when the instance is launched (started for the first time)
+    - can be used to automate the configuration of the instance, such as installing software, 
+      configuring settings, and running scripts
+    - can be provided as a script (e.g., bash, PowerShell) or as cloud-init directives
+    - user data is executed with root privileges, so it can perform any actions that the root user can perform
+    - user data is only executed once when the instance is launched, and will not run again if the instance is stopped and started
+    - command is --user-data file://path/to/user-data-script.sh when launching an instance using the AWS CLI
+    - must be base64 encoded, happens automatically when using the AWS CLI
+    - limited to 16 KB in raw form before encoding
+
+Port 22 (SSH) must be open in the security group to allow remote access to the instance
+Port 80 (HTTP) must be open to allow access to the web server installed by the user data script
+Port 443 (HTTPS) must be open to allow secure access to the web server installed by the user data script
+
+# Example commmands to run:
+
+# IMDSv1
+
+1. Get the instance ID:
+curl http://169.254.169.254/latest/meta-data/instance-id
+
+2. Get the AMI ID:
+curl http://169.254.169.254/latest/meta-data/ami-id
+
+3. Get the instance type:
+curl http://169.254.169.254/latest/meta-data/instance-type
+
+4. Get the local IPv4 address:
+curl http://169.254.169.254/latest/meta-data/local-ipv4
+
+5. Get the public IPv4 address:
+curl http://169.254.169.254/latest/meta-data/public-ipv4
+
+# IMDS v2
+
+## Step 1 - Create a session and get a token
+
+TOKEN=$(curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600")
+
+## Step 2 - Use the token to request metadata
+
+1. Get the instance ID:
+curl -H "X-aws-ec2-metadata-token: $TOKEN" http://169.254.169.254/latest/meta-data/instance-id
+
+2. Get the AMI ID:
+curl -H "X-aws-ec2-metadata-token: $TOKEN" http://169.254.169.254/latest/meta-data/ami-id
+
+# Use metadata with user data to configure the instance
