@@ -1,4 +1,3 @@
-ls# aws_saa_notes
 # AWS SAA Study Notes Repository
 
 This repository contains notes and hands-on lab artifacts created while studying for the AWS Certified Solutions Architect – Associate (SAA) certification.
