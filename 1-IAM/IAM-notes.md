@@ -67,11 +67,11 @@ IAM users can authenticate using:
 ## Login References
 
 * **IAM User Login**
-  https://ijpc-training.signin.aws.amazon.com/console
+  https://ijpc-training.signin.aws.amazon.com/console<br>
   Username: `ijpc-training`
 
 * **Root Account Login**
-  https://console.aws.amazon.com/
+  https://console.aws.amazon.com/<br>
   Use the **root email option**
 
 ---
@@ -88,9 +88,7 @@ A **permissions boundary** is a managed policy that sets the **maximum permissio
 
 ### Effective Permissions
 
-```
 Final Permissions = Identity Policy ∩ Permissions Boundary
-```
 
 ---
 
@@ -106,7 +104,7 @@ Occurs when a user or role gains more permissions than intended.
 
 ### Rule
 
-* Users can only create roles/permissions equal to or less than their own
+* Users can only create roles/permissions equal to or less than their own.
 
 ---
 
@@ -137,22 +135,23 @@ SCPs are organization-level policies used in AWS Organizations.
 
 ### Order of Evaluation
 
-1. **Explicit Deny (any policy)** → DENY
+1. **Explicit Deny (any policy)** → EXPLICIT DENY
 2. **SCP check**
 
-   * If no Allow → DENY
+   * If no Allow → IMPLICIT DENY
 3. **Resource-based policy**
 
-   * Explicit Deny → DENY
+   * No Allow → IMPLICIT DENY
 4. **Identity-based policy**
 
-   * No Allow → DENY
+   * No Allow → IMPLICIT DENY
 5. **Permissions Boundary**
 
-   * No Allow → DENY
+   * No Allow → IMPLICIT DENY
 6. **Session policies / role session**
 
-   * Evaluated if applicable
+   * Evaluated if applicable in order of Session Policy → Role Session
+   * No Allow → IMPLICIT DENY
 7. **Final Decision**
 
    * Allow if no denies exist
@@ -285,7 +284,7 @@ IAM policies are JSON documents with:
 
 ---
 
-## AWS IAM Best Practices
+## [AWS IAM Best Practices](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html)
 
 * Use federation for human users
 * Use roles + temporary credentials for workloads
@@ -303,13 +302,18 @@ IAM policies are JSON documents with:
 
 ---
 
-## Exam Cram
+## Exam Cram Takeaways 
 
 * CLI = command-line interface for AWS
-* IAM users can represent applications (**service accounts**)
+* IAM users represented by applications are known as **service accounts**
 * 5000 user limit per account
 * Groups manage multiple users
 * Roles are assumed identities with temporary credentials
+* Policies are JSON documents that define permissions
+* Permissions boundaries limit maximum permissions
+* SCPs set organization-wide permission limits
+* Explicit deny overrides everything
+* Requests evaluated in order: Explicit Deny → SCP → Resource-based → Identity-based → Permissions Boundary → Session Policies → Role Session → Allow
 
 ---
 
