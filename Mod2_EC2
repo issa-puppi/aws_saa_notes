@@ -9,7 +9,8 @@ Amazon EC2 (Elastic Compute Cloud):
         * the operating system, software, and security patches
     - instances are flexible and can be resized, stopped, started, and terminated as needed
     - cost is based on the instance type, usage hours, and additional features (e.g., EBS volumes, data transfer)
-        * incoming data transfer is free, while outgoing data transfer is charged based on the amount of data transferred out of AWS (no charge for data transfer between EC2 instances in the same region but different availability zones will be charged)
+        * incoming data transfer is free, while outgoing data transfer is charged based on the amount of data transferred out of 
+        AWS (no charge for data transfer between EC2 instances in the same region but different availability zones will be charged)
 
 EC2 Instance Types:
     - General Purpose: balanced compute, memory, and networking resources (e.g., t3, m5)
@@ -61,10 +62,14 @@ ENI, ENA and EFA:
         Higher bandwidth and lower latency than ENI, must choose supported instance types (e.g., C5n, M5n, R5n)
 
     - EFA (Elastic Fabric Adapter): specialized network interface for HPC workloads that require low latency 
-        and high throughput, specialized for High Performance Computing (HPC) workloads, Message Passing Interfaces (MPI) and Machine Learning (ML) use cases.
-        Tightly coupled applications, can use all instance types, but only supported in certain regions and availability zones (e.g., us-east-1, us-west-2)
+        and high throughput, specialized for High Performance Computing (HPC) workloads, Message Passing Interfaces (MPI) 
+        and Machine Learning (ML) use cases.
+        Tightly coupled applications, can use all instance types, but only supported in certain regions and availability zones 
+        (e.g., us-east-1, us-west-2)
 
-        *MPI (Message Passing Interface) is a standardized and portable message-passing system designed to function on parallel computing architectures. It allows processes to communicate with each other by sending and receiving messages, enabling the development of parallel applications that can run efficiently on distributed memory systems.
+        *MPI (Message Passing Interface) is a standardized and portable message-passing system designed to function on parallel 
+        computing architectures. It allows processes to communicate with each other by sending and receiving messages, enabling 
+        the development of parallel applications that can run efficiently on distributed memory systems.
 
 EBS Volumes are displayed as local drives on the EC2 instance, but they are actually network-attached storage 
     - EBS volumes must be in the same availability zone as the EC2 instance they are attached to
@@ -86,4 +91,41 @@ Ephemeral storage - memory is lost when the chip is powered off (non-persistent 
     - instance store volumes are only available for certain instance types (e.g., i3, d2)
     - instance store volumes are ideal for temporary storage of information that changes frequently, such as 
       buffers, caches, scratch data, and other temporary content
+
+When launching an instance the steps are:
+    1. Select an instance type which defines the hardware profile and therefore the cost 
+       (e.g., m5.large)
+    2. Choose an Amazon Machine Image (AMI) which defines the operating system and software configuration 
+       (e.g. Linux or Windows)
+       These are backed by snapshorts which are point-in-time copies of EBS volumes, and can be used to 
+       create new AMIs or restore existing ones
+
+  HOL Lab notes:
+//---------------
+
+I can find the SSH command for my private key in thr EC2 console under the "Connect" section of the instance details. 
+It will look something like this: ssh -i /path/to/my-key.pem ec2-user@<public-ip-address>
+
+Connect using a Public IP address is for public subnets, and allows direct access to the instance from the Internet
+Connect using a Private IP address is for private subnets, and requires a VPN or Direct Connect connection to the VPC
+
+From the console line you can use commands like ls, ifconfig and ping google.com to verify connectivity 
+and check the instance's network configuration. You can also use the AWS CLI to manage your EC2 instances, 
+such as starting, stopping, and terminating instances, as well as creating and managing EBS volumes and ENIs.
+
+Remember to terminatet instances when you are done to avoid unnecessary costs, 
+and to detach and delete any EBS volumes that are no longer needed.
+
+Instance Metadata is data about the instance that can be accessed from within the instance itself
+    - curl http://169.254.169.254/latest/meta-data to access instance metadata
+    - curl http://169.254.169.254/latest/meta-data/local-ipv4 to get the private IP address of the instance
+    - curl http://169.254.169.254/latest/meta-data/public-ipv4 to get the public IP address of the instance
+
+IMDSv1 vs IMDSv2 (Instance Metadata Service):
+    - IMDSv1: The original version, older and less secure
+    - IMDSv2: The newer version, more secure, requires session tokens for authorization, 
+              and is recommended for all new applications
+
+Default is IMDSv1, but some instances might disable it as a default option, so 
+it's important to check the instance metadata options when launching an instance.
 
