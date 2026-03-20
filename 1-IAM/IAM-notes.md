@@ -157,7 +157,7 @@ SCPs are organization-level policies used in AWS Organizations.
 
     * Allow if no denies exist, otherwise IMPLICIT DENY
 
-![Permission Evaluation Flow](screenshots/permission-evaluation-flow.png)
+![Permission Evaluation Flow](../assets/1-IAM/permission-evaluation-flow.png)
 
 ---
 
@@ -305,7 +305,7 @@ IAM policies are JSON documents with:
 
 ---
 
-## Exam Cram Takeaways 
+## [Exam Cram](https://www.udemy.com/course/aws-certified-solutions-architect-associate-hands-on/learn/lecture/28616888#overview) 
 
 * CLI = command-line interface for AWS
 * IAM users represented by applications are known as **service accounts**
@@ -320,8 +320,15 @@ IAM policies are JSON documents with:
 
 ---
 
+## Architecture Patterns - IAM
+
+![IAM Architecture Patterns1](../assets/1-IAM/iam-architecture-patterns-1.png)
+![IAM Architecture Patterns2](../assets/1-IAM/iam-architecture-patterns-2.png)
+
+---
+
 ## Reference
 
-* IAM Cheat Sheet: https://digitalcloud.training/aws-iam/
+## [IAM Cheat Sheet](https://digitalcloud.training/aws-iam/)
 
 ---

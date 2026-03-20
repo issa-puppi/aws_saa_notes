@@ -314,22 +314,22 @@ These must be allowed in the **security group**.
 
 ## Example commmands to run:
 
-1. Get the instance ID:
+1. Get the instance ID: <br>
 `curl http://169.254.169.254/latest/meta-data/instance-id`
 
-2. Get the AMI ID:
+2. Get the AMI ID: <br>
 `curl http://169.254.169.254/latest/meta-data/ami-id`
 
-3. Get the instance type:
+3. Get the instance type: <br>
 `curl http://169.254.169.254/latest/meta-data/instance-type`
 
-4. Get the local IPv4 address:
+4. Get the local IPv4 address: <br>
 `curl http://169.254.169.254/latest/meta-data/local-ipv4`
 
-5. Get the public IPv4 address:
+5. Get the public IPv4 address: <br>
 `curl http://169.254.169.254/latest/meta-data/public-ipv4`
 
-6. Can get the list of queries availiable in any category by ending with a '/':
+6. Can get the list of queries availiable in any category by ending with a '/': <br>
 `curl http://169.254.169.254/latest/meta-data/`
 
 ### IMDSv2
@@ -340,10 +340,10 @@ These must be allowed in the **security group**.
 
 ## Step 2 - Use the token to request metadata
 
-1. Get the instance ID:
+1. Get the instance ID: <br>
 `curl -H "X-aws-ec2-metadata-token: $TOKEN" http://169.254.169.254/latest/meta-data/instance-id`
 
-2. Get the AMI ID:
+2. Get the AMI ID: <br>
 `curl -H "X-aws-ec2-metadata-token: $TOKEN" http://169.254.169.254/latest/meta-data/ami-id`
 
 ## Use metadata with user data to configure the instance
@@ -418,22 +418,300 @@ EC2 instances can be monitored using **CloudWatch** for:
 - **Cluster** - groups instances close together in the same AZ for low latency and high throughput
   - Typically used for toughtly coupled, HPC and big data workloads
 
-![Cluster](scnreenshots/cluster-placement-group.png)
+![Cluster](../assets/2-EC2/cluster-placement-group.png)
 
 - **Partition** - spreads instances across logical partitions to reduce failure risk
   - Do not share the underlying hardware within a partition
   - Typically used for large distributed & replicated workloads 
   - e.g. Hadoop, Cassandra, Kafka and HDFS
 
-![Partition](screenshots/partition-placement-group.png)
+![Partition](../assets/2-EC2/partition-placement-group.png)
 
 - **Spread** - strictly places a small group of instances
   - On distinct underlying hardware to reduce correlated failures
 
-![Spread](screenshots/spread-placement-group.png)
+![Spread](../assets/2-EC2/spread-placement-group.png)
 
 **Some Use Cases:**
 
-![Use Cases](screenshots/placement-group-use-cases.png)
+![Use Cases](../assets/2-EC2/placement-group-use-cases.png)
+
+---
+
+## Network Interfaces
+
+- **Primary ENI** is created by default when an instance is launched 
+  - Private IP by default, optional public IP if in a public subnet
+- **Secondary ENIs** can be attached to an instance for additional network interfaces
+  - Can have their own private IPs and security groups
+  - Must be within the same VPC and AZ as the instance
+- ENIs can be detached and reattached to other instances in the same AZ
+  - Cannot be moved or attached across AZs or VPCs
+
+## ENI (Elastic Network Interface)
+- Basic network interface for EC2
+- Can be used with any instance type
+
+## ENA (Elastic Network Adapter)
+- Enhanced networking performance
+- Higher bandwidth and lower inter-instance latency
+- Requires supported instance types and AMIs
+
+## EFA (Elastic Fabric Adapter)
+- Designed for HPC, MPI and ML
+- Tighly coupled applications
+- Can use with all instance types
+
+---
+
+## IP Addressing
+
+- **Public IP** → temporary public dynamic address for the instance
+  - Released when stopped or terminated
+  - Cannot be moved to another instance or ENI (e.g. us-east-1a to us-east-1b)
+  - Charged when attached to a running instance
+
+- **Private IP** → internal static address for VPC communication 
+  - Remains associated with the instance while it exists
+  - Used in both public and private subnets
+  - Free of charge
+
+- **Elastic IP** → static public address 
+  - Remains associated even if the instance is stopped or terminated
+  - Can be moved between instances or ENIs (in the same region)
+  - Cannot be attached to multiple instances or ENIs at the same time
+  - Charged when allocated but not attached to a running instance
+
+This is why DNS is often used to abstract away IP changes
+  - Especially for public facing applications
+
+---
+
+## NAT (Network Address Translation)
+
+- **NAT Gateway** is a managed service that allows instances in private subnets to access the internet
+  - Provides high availability and scalability
+  - Charged based on usage and data transfer
+
+* Can use `ipconfig` or `ifconfig` to check for `igw` (Internet Gateway) or `nat` (NAT Gateway) in the routing table to determine if the instance is in a public or private subnet.
+
+---
+
+## Private Subnets and Bastion Hosts
+
+- First entry in route table is for local VPC communication
+- If the 2nd entry is a route to an IGW, the instance is in a public subnet
+- Otherwise, if there is no route or a route to a NAT Gateway, the instance is in a private subnet
+
+## Bastion / Jump Host
+- A special instance in a public subnet used to securely access instances in private subnets
+- Acts as a gateway for SSH or RDP access to private instances
+  - Allows secure access without direct internext access to private instances
+
+---
+
+## HOL Lab Notes - Bastion Host
+
+Command line to connect to a public instance to a private instance through a bastion host:
+
+```bash
+nano <key-file.pem>   # open the private key file in a text editor
+ssh -i <key-file.pem> ec2-user@<bastion-private-ip> # connect to the bastion host
+ping google.com       # verify internet access from private instance fails
+```
+
+---
+
+## NAT Gateways
+
+- Created in the public subnet 
+- NAT Gateway ID must be in the specified Private subnet RT (route table)
+- Fully managed by AWS, highly available, and scalable
+- No Security Groups (Instances require them)
+- No SSH access 
+- No  support for port forwarding or inbound connections
+
+---
+
+## NAT Instances
+
+- EC2 insance pre-configured to perform NAT functions
+- use `amzn-ami-vpc-nat` AMI from **AWS Marketplace**
+- Must disable source/destination checks on the instance
+- Less scalable and less available than NAT Gateway
+- Can be used for cost savings in low traffic scenarios
+- Requires manual management and maintenance 
+  * (e.g., patching, monitoring, failover)
+- Can be used as Bastion Host
+  * if configured properly with security groups and routing
+- Less common and secure than NAT Gateway
+- Can implement port forwarding and support inbound connections
+
+---
+
+## HOL Lab Notes - NAT Gateway
+
+1. Create a NAT Gateway in the public subnet
+2. Go to *Route Tables* and select the route table associated with the private subnet
+3. Edit routes and add a new route:
+   - Destination: `0.0.0.0/0`
+   - Target: `<NAT Gateway ID>`
+4. Save the route and test connectivity from the private instance to the internet
+   - `ping google.com` should succeed from the private instance
+   - *Reminder*: Kill the command with `Ctrl + C` after verifying connectivity
+
+You are charged for the NAT Gateway based on usage and data transfer. Always remember to delete the NAT Gateway when finished to avoid unnecessary costs.
+
+---
+
+## EC2 Lifecycle states:
+- **Pending** → instance is being launched
+- **Running** → instance is active and can be accessed
+- **Rebooting** → instance is restarting
+- **Stopping** → instance is being stopped
+- **Stopped** → instance is stopped and can be restarted 
+- **Shutting down** → instance is being terminated
+- **Terminated** → instance is permanently deleted and cannot be restarted
+
+![EC2 Lifecycle](../assets/2-EC2/ec2-lifecycle.png)
+
+## Stopping EC2 Instances
+
+  - EBS Backed instances only
+  - No charge for stopped instances
+  - EBS volumes remain attached
+    - Charged based on provisioned size and type
+  - Data in RAM is lost
+  - Public IP is released (if not using an Elastic IP)
+  - Private IP remains associated with the instance
+
+## Hibernating EC2 Instances
+
+  - Applies to suported instance types and AMIs
+  - Saves the contents of RAM to the EBS root volume
+  - Must be enabled at launch time
+  - Specific prerequisites and limitations apply
+  - Charges apply for EBS storage used to save the RAM contents
+
+## Rebooting EC2 Instances
+
+  - Equivalent to rebooting an OS reboot
+  - DNS and IP addresses remain the same
+  - No charge for rebooting
+
+## Retiring EC2 Instances
+
+  - AWS may retire an instance due to underlying hardware issues
+  - AWS will notify customers in advance
+  - Customers can choose to stop, start, or terminate the instance before the retirement date
+    - If no action is taken, AWS will automatically stop the instance at the retirement time
+
+## Terminating EC2 Instances
+
+  - Means permanently deleting the instance
+  - Cannot be restarted or recovered
+  - EBS volumes with `Delete on Termination` set to true will be deleted
+    - Otherwise they will persist and be charged
+
+## Recovering EC2 Instances
+
+  - CloudWatch can be used to monitor instance status and trigger recovery actions
+  - Applies if instance fails a system status check
+  - AWS will attempt to recover the instance on new hardware
+    - Instance is identical to the original
+
+---
+
+## AWS Nitro System
+
+- Nitro is the underlying platform for modern EC2 instances
+- Provides enhanced performance, security, and flexibility
+- Does not have a high availability 
+  - Due to being a single point of failure
+  - Is designed to be highly reliable and secure
+- Offloads virtualization to bare metal (dedicated hardware) instead of software
+- Enables features like **ENA**, **EFA**, and **Nitro Enclaves**
+
+## Nitro Enclaves
+
+- Provides isolated compute environments for sensitive workloads
+- Uses hardware-based isolation to protect data and code
+- Integrates with **AWS Key Management Service (KMS)** for secure key management
+
+## [Current Instance Types](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html) 
+
+---
+
+## Amazon EC2 Pricing Options
+
+- **On-Demand** → standard rate, no long-term commitment, no discount
+- **Reserved Instances** → 1 or 3 year commitment, significant discount, standard or convertible
+- **Spot Instances** → low price for unused capacity, up to 90% discount, can be terminated by AWS
+- **Dedicated Instances** → run on isolated hardware, no multi-tenancy, pay per instance
+- **Dedicated Hosts** → physical dedicated server, useful for licenses/compliance, pay per host ($$$)
+- **Savings Plans** → flexible pricing model, commit to a consistent amount of usage, up to 72% discount
+
+- Billed per second with a 1-minute minimum for On-Demand and Reserved Instances
+- Volumes billed the same based on provisioned size and type
+- Some Linux distros like Ubuntu and Suse have hourly pricing (1 hr minimum) due to licensing costs
+- Pay less upfront for Reserved Instances and Savings Plans, but commit to usage for 1 or 3 years
+
+## On-Demand Capacity Reservations
+
+- Reserve capacity for EC2 instances in a specific AZ without upfront payment
+- Any duration can be specified (e.g., 1 hour, 1 day, 1 month)
+- Requires:
+  - Instance attributes (e.g., instance type, platform)
+  - AZ
+  - Number of instances
+
+## Capacity Block Reservations
+
+- Good for ML and HPC workloads that require large blocks of capacity
+- Reserve a block of capacity in a specific AZ for a specified duration
+
+## Saving Plans
+
+- *Compute Savings Plans*, *EC2 Instance Savings Plans*, and *ML Savings Plans*
+
+## EC2 Spot Instances
+
+- **Spot Instances** one or more EC2 instances
+- **Spot Fleets** a collection of Spot Instances to target capacity 
+- **EC2 Fleet** a collection of On-Demand, Reserved, and Spot Instances
+- *Spot Instances* can be interrupted by AWS with a 2-minute warning when capacity is needed for *On-Demand* or *Reserved Instances*
+
+---
+
+## Dedicated Hosts vs Dedicated Instances
+
+![Dedicated Hosts vs Dedicated Instances](../assets/2-EC2/dedicated-hosts-vs-dedicated-instances.png)
+  
+---
+
+## EC2 Pricing Use Cases
+
+![EC2 Pricing Use Cases 1](../assets/2-EC2/ec2-pricing-use-cases-1.png)
+![EC2 Pricing Use Cases 2](../assets/2-EC2/ec2-pricing-use-cases-2.png)
+
+---
+
+## [Exam Cram](https://www.udemy.com/course/aws-certified-solutions-architect-associate-hands-on/learn/lecture/28617490#overview)
+
+---
+
+## Architecture Patterns - AWS EC2 
+
+![EC2 Architecture Patterns1](../assets/2-EC2/ec2-architecture-patterns-1.png)
+![EC2 Architecture Patterns2](../assets/2-EC2/ec2-architecture-patterns-2.png)
+![EC2 Architecture Patterns3](../assets/2-EC2/ec2-architecture-patterns-3.png)
+
+---
+
+## Reference
+
+## [EC2 Quiz](https://www.udemy.com/course/aws-certified-solutions-architect-associate-hands-on/learn/quiz/5346096#overview)
+## [Amazon EC2 Cheatsheet](https://digitalcloud.training/amazon-ec2/)
+## [Amazon VPC Cheatsheet](https://digitalcloud.training/amazon-vpc/)
 
 ---
