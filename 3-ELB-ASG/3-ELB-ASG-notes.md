@@ -117,13 +117,13 @@ Pictured below is what the `Activity History` of an ASG looks like when scaling 
 
 | High Availability | Fault Tolerance |
 |:---:|:---:|
-| • Minimizes downtime | • Near-zero downtime |
-| • Redundant components (failover-based) | • Fully redundant components (active-active) |
-| • Usually asynchronous replication | • Synchronous replication required |
-| • Recovery required (seconds to minutes) | • No recovery needed |
-| • Possible small data loss (RPO > 0) | • No data loss (RPO = 0) |
-| • Lower cost | • Higher cost |
-| • Active-passive (failover) | Active-active |
+| Minimizes downtime | Near-zero downtime |
+| Redundant components (failover-based) | Fully redundant components (active-active) |
+| Usually asynchronous replication | Synchronous replication required |
+| Recovery required (seconds to minutes) | No recovery needed |
+| Possible small data loss (RPO > 0) | No data loss (RPO = 0) |
+| Lower cost | Higher cost |
+| Active-passive (failover) | Active-active |
 | Example: Multi-AZ (RDS, ELB) | Example: Multi-region active-active |
 
 ---
@@ -141,13 +141,23 @@ By deploying across multiple AZs, you can achieve high availability and fault to
 ## Durability vs Availability
 
 | Durability | Availability |
-|:---:|:---:|
+|---|---|
 | Protection against: | Measurement of: |
 | • Data loss | • Uptime |
 | • Data corruption | • % of time / year |
-| • S3 offers 11 9's durability | | • RDS Multi-AZ offers 99.99% availability |
+| • S3 offers 11 9's durability | • RDS Multi-AZ has 99.99% uptime |
 
 - If you store 10 million objects in S3, you can expect to lose one object every 10,000 years on average 
 
 ---
 
+## Elastic Load Balancing (ELB)
+
+**ELB** automatically distributes incoming application traffic across multiple targets.
+
+**Targets include:**
+    - EC2 instances
+    - ECS containers
+    - IP addresses
+    - Lambda functions
+    - Other Load Balancers
