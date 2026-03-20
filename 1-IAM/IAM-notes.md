@@ -329,6 +329,7 @@ IAM policies are JSON documents with:
 
 ## Reference
 
+## [IAM Quiz](https://www.udemy.com/course/aws-certified-solutions-architect-associate-hands-on/learn/quiz/5346094#overview)
 ## [IAM Cheat Sheet](https://digitalcloud.training/aws-iam/)
 
 ---
