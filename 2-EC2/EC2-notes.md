@@ -435,7 +435,9 @@ EC2 instances can be monitored using **CloudWatch** for:
 <!--![Spread Diagram](../assets/2-EC2/spread-placement-group.png)-->
 ### [Spread Diagram Private Link](https://drive.google.com/file/d/1d-CwcIxBAETaNxRJPr-mGWwT-DS318Ip/view?usp=drive_link)
 
-**Some Use Cases:**
+---
+
+## Example Use Cases for Placement Groups
 
 <!--![Use Cases Diagram](../assets/2-EC2/placement-group-use-cases.png)-->
 ### [Use Cases Diagram Private Link](https://drive.google.com/file/d/18rTDsqjTVEbv2yrtrEyWuSMFpdIIrbY8/view?usp=drive_link)
@@ -452,16 +454,20 @@ EC2 instances can be monitored using **CloudWatch** for:
 - ENIs can be detached and reattached to other instances in the same AZ
   - Cannot be moved or attached across AZs or VPCs
 
-## ENI (Elastic Network Interface)
+---
+
+## Types of Networked Applications
+
+### ENI (Elastic Network Interface)
 - Basic network interface for EC2
 - Can be used with any instance type
 
-## ENA (Elastic Network Adapter)
+### ENA (Elastic Network Adapter)
 - Enhanced networking performance
 - Higher bandwidth and lower inter-instance latency
 - Requires supported instance types and AMIs
 
-## EFA (Elastic Fabric Adapter)
+### EFA (Elastic Fabric Adapter)
 - Designed for HPC, MPI and ML
 - Tighly coupled applications
 - Can use with all instance types
@@ -580,7 +586,11 @@ You are charged for the NAT Gateway based on usage and data transfer. Always rem
 <!--![EC2 Lifecycle Diagram](../assets/2-EC2/ec2-lifecycle.png)-->
 ### [EC2 Lifecycle Private Link](https://drive.google.com/file/d/19YNMOOoC6z_GHbI1An7X5gQpWqvEr-Im/view?usp=drive_link)
 
-## Stopping EC2 Instances
+---
+
+## EC2 States In Detail
+
+### Stopping EC2 Instances
 
   - EBS Backed instances only
   - No charge for stopped instances
@@ -590,7 +600,7 @@ You are charged for the NAT Gateway based on usage and data transfer. Always rem
   - Public IP is released (if not using an Elastic IP)
   - Private IP remains associated with the instance
 
-## Hibernating EC2 Instances
+### Hibernating EC2 Instances
 
   - Applies to suported instance types and AMIs
   - Saves the contents of RAM to the EBS root volume
@@ -598,27 +608,27 @@ You are charged for the NAT Gateway based on usage and data transfer. Always rem
   - Specific prerequisites and limitations apply
   - Charges apply for EBS storage used to save the RAM contents
 
-## Rebooting EC2 Instances
+### Rebooting EC2 Instances
 
   - Equivalent to rebooting an OS reboot
   - DNS and IP addresses remain the same
   - No charge for rebooting
 
-## Retiring EC2 Instances
+### Retiring EC2 Instances
 
   - AWS may retire an instance due to underlying hardware issues
   - AWS will notify customers in advance
   - Customers can choose to stop, start, or terminate the instance before the retirement date
     - If no action is taken, AWS will automatically stop the instance at the retirement time
 
-## Terminating EC2 Instances
+### Terminating EC2 Instances
 
   - Means permanently deleting the instance
   - Cannot be restarted or recovered
   - EBS volumes with `Delete on Termination` set to true will be deleted
     - Otherwise they will persist and be charged
 
-## Recovering EC2 Instances
+### Recovering EC2 Instances
 
   - CloudWatch can be used to monitor instance status and trigger recovery actions
   - Applies if instance fails a system status check
@@ -637,11 +647,15 @@ You are charged for the NAT Gateway based on usage and data transfer. Always rem
 - Offloads virtualization to bare metal (dedicated hardware) instead of software
 - Enables features like **ENA**, **EFA**, and **Nitro Enclaves**
 
+---
+
 ## Nitro Enclaves
 
 - Provides isolated compute environments for sensitive workloads
 - Uses hardware-based isolation to protect data and code
 - Integrates with **AWS Key Management Service (KMS)** for secure key management
+
+---
 
 ## [Current Instance Types](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html) 
 
@@ -656,10 +670,16 @@ You are charged for the NAT Gateway based on usage and data transfer. Always rem
 - **Dedicated Hosts** → physical dedicated server, useful for licenses/compliance, pay per host ($$$)
 - **Savings Plans** → flexible pricing model, commit to a consistent amount of usage, up to 72% discount
 
+---
+
+### General pricing notes:
+
 - Billed per second with a 1-minute minimum for On-Demand and Reserved Instances
 - Volumes billed the same based on provisioned size and type
 - Some Linux distros like Ubuntu and Suse have hourly pricing (1 hr minimum) due to licensing costs
 - Pay less upfront for Reserved Instances and Savings Plans, but commit to usage for 1 or 3 years
+
+---
 
 ## On-Demand Capacity Reservations
 
@@ -670,21 +690,27 @@ You are charged for the NAT Gateway based on usage and data transfer. Always rem
   - AZ
   - Number of instances
 
+---
+
 ## Capacity Block Reservations
 
 - Good for ML and HPC workloads that require large blocks of capacity
 - Reserve a block of capacity in a specific AZ for a specified duration
 
-## Saving Plans
+---
+
+## Types of Savings Plans
 
 - *Compute Savings Plans*, *EC2 Instance Savings Plans*, and *ML Savings Plans*
 
-  ## EC2 Spot Instances
+---
+
+## Types of EC2 Spot Instances & Fleets
 
 - **Spot Instances** one or more EC2 instances
 - **Spot Fleets** a collection of Spot Instances to target capacity 
 - **EC2 Fleet** a collection of On-Demand, Reserved, and Spot Instances
-- *Spot Instances* can be interrupted by AWS with a 2-minute warning when capacity is needed for *On-Demand* or *Reserved Instances*
+- **Spot Instances** can be interrupted by AWS with a 2-minute warning when capacity is needed for **On-Demand** or **Reserved Instances**
 
 ---
 
@@ -724,7 +750,7 @@ Below are some common use cases for different EC2 pricing options based on workl
 
 ---
 
-## Reference
+## Quick References
 
 ### [EC2 Quiz](https://www.udemy.com/course/aws-certified-solutions-architect-associate-hands-on/learn/quiz/5346096#overview)<br>
 ### [Amazon EC2 Cheatsheet](https://digitalcloud.training/amazon-ec2/)<br>
