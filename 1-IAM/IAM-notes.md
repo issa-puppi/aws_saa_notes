@@ -157,8 +157,8 @@ SCPs are organization-level policies used in AWS Organizations.
 
     * Allow if no denies exist, otherwise IMPLICIT DENY
 
-![Permission Evaluation Flow Diagram](../assets/1-IAM/permission-evaluation-flow.png)
-[Permission Evaluation Flow Diagram Private Link](https://drive.google.com/file/d/1LYzD_6GxymOqRbOx-lpOu5pzNdUHtSic/view?usp=drive_link)
+<!--![Permission Evaluation Flow Diagram](../assets/1-IAM/permission-evaluation-flow.png)-->
+### [Permission Evaluation Flow Diagram Private Link](https://drive.google.com/file/d/1LYzD_6GxymOqRbOx-lpOu5pzNdUHtSic/view?usp=drive_link)
 
 ---
 
@@ -323,19 +323,19 @@ IAM policies are JSON documents with:
 
 ## Architecture Patterns - IAM
 
-<!-- These -->
+<!-- These Images references have been left here as an artifact for the versioning of this document, but the actual images have been removed from the repository and replaced with private links to the new location of the original materials. 
 
 ![IAM Architecture Patterns1 Assets](../assets/1-IAM/iam-architecture-patterns-1.png)
-![IAM Architecture Patterns2 Assets](../assets/1-IAM/iam-architecture-patterns-2.png)
+![IAM Architecture Patterns2 Assets](../assets/1-IAM/iam-architecture-patterns-2.png) -->
 
-[IAM Architecture Patterns1 Private Link](https://drive.google.com/file/d/1t31KkZIopALSoLC59CwS3N-g1p79P37W/view?usp=drive_link)
-[IAM Architecture Patterns2 Private Link](https://drive.google.com/file/d/1cjYVNKm53xOCQptiZO-rwI1jLw8JeI5i/view?usp=drive_link)
+### [IAM Architecture Patterns1 Private Link](https://drive.google.com/file/d/1t31KkZIopALSoLC59CwS3N-g1p79P37W/view?usp=drive_link) <br>
+### [IAM Architecture Patterns2 Private Link](https://drive.google.com/file/d/1cjYVNKm53xOCQptiZO-rwI1jLw8JeI5i/view?usp=drive_link)
 
 ---
 
 ## Reference
 
-## [IAM Quiz](https://www.udemy.com/course/aws-certified-solutions-architect-associate-hands-on/learn/quiz/5346094#overview)
-## [IAM Cheat Sheet](https://digitalcloud.training/aws-iam/)
+### [IAM Quiz](https://www.udemy.com/course/aws-certified-solutions-architect-associate-hands-on/learn/quiz/5346094#overview)
+### [IAM Cheat Sheet](https://digitalcloud.training/aws-iam/)
 
 ---

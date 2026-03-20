@@ -1,6 +1,7 @@
 ## Private Study Materials
 
 This repository previously included screenshots from AWS training materials used for personal study.  
+
 All such materials have been moved to a private Google Drive folder and are no longer stored in this repository.
 
 The link below is restricted and intended for my personal reference only.

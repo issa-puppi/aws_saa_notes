@@ -418,27 +418,27 @@ EC2 instances can be monitored using **CloudWatch** for:
 - **Cluster** - groups instances close together in the same AZ for low latency and high throughput
   - Typically used for toughtly coupled, HPC and big data workloads
 
-![Cluster Diagram](../assets/2-EC2/cluster-placement-group.png)
-[Cluster Diagram Private Link](https://drive.google.com/file/d/13pclSgdSyeQuh7A1lfk4lBaor05_JJSX/view?usp=drive_link)
+<!--![Cluster Diagram](../assets/2-EC2/cluster-placement-group.png)-->
+### [Cluster Diagram Private Link](https://drive.google.com/file/d/13pclSgdSyeQuh7A1lfk4lBaor05_JJSX/view?usp=drive_link)
 
 - **Partition** - spreads instances across logical partitions to reduce failure risk
   - Do not share the underlying hardware within a partition
   - Typically used for large distributed & replicated workloads 
   - e.g. Hadoop, Cassandra, Kafka and HDFS
 
-![Partition Diagram](../assets/2-EC2/partition-placement-group.png)
-[Partition Diagram Private Link](https://drive.google.com/file/d/11Az7_CfuMm99vqNDVFN7YCfIDdr5TsA2/view?usp=drive_link)
+<!--![Partition Diagram](../assets/2-EC2/partition-placement-group.png)-->
+### [Partition Diagram Private Link](https://drive.google.com/file/d/11Az7_CfuMm99vqNDVFN7YCfIDdr5TsA2/view?usp=drive_link)
 
 - **Spread** - strictly places a small group of instances
   - On distinct underlying hardware to reduce correlated failures
 
-![Spread Diagram](../assets/2-EC2/spread-placement-group.png)
-[Spread Diagram Private Link](https://drive.google.com/file/d/1d-CwcIxBAETaNxRJPr-mGWwT-DS318Ip/view?usp=drive_link)
+<!--![Spread Diagram](../assets/2-EC2/spread-placement-group.png)-->
+### [Spread Diagram Private Link](https://drive.google.com/file/d/1d-CwcIxBAETaNxRJPr-mGWwT-DS318Ip/view?usp=drive_link)
 
 **Some Use Cases:**
 
-![Use Cases Diagram](../assets/2-EC2/placement-group-use-cases.png)
-[Use Cases Diagram Private Link](https://drive.google.com/file/d/18rTDsqjTVEbv2yrtrEyWuSMFpdIIrbY8/view?usp=drive_link)
+<!--![Use Cases Diagram](../assets/2-EC2/placement-group-use-cases.png)-->
+### [Use Cases Diagram Private Link](https://drive.google.com/file/d/18rTDsqjTVEbv2yrtrEyWuSMFpdIIrbY8/view?usp=drive_link)
 
 ---
 
@@ -577,8 +577,8 @@ You are charged for the NAT Gateway based on usage and data transfer. Always rem
 - **Shutting down** → instance is being terminated
 - **Terminated** → instance is permanently deleted and cannot be restarted
 
-![EC2 Lifecycle Diagram](../assets/2-EC2/ec2-lifecycle.png)
-[EC2 Lifecycle Private Link](https://drive.google.com/file/d/19YNMOOoC6z_GHbI1An7X5gQpWqvEr-Im/view?usp=drive_link)
+<!--![EC2 Lifecycle Diagram](../assets/2-EC2/ec2-lifecycle.png)-->
+### [EC2 Lifecycle Private Link](https://drive.google.com/file/d/19YNMOOoC6z_GHbI1An7X5gQpWqvEr-Im/view?usp=drive_link)
 
 ## Stopping EC2 Instances
 
@@ -690,19 +690,21 @@ You are charged for the NAT Gateway based on usage and data transfer. Always rem
 
 ## Dedicated Hosts vs Dedicated Instances
 
-![Dedicated Hosts vs Dedicated Instances Diagram](../assets/2-EC2/dedicated-hosts-vs-dedicated-instances.png)
+<!--![Dedicated Hosts vs Dedicated Instances Diagram](../assets/2-EC2/dedicated-hosts-vs-dedicated-instances.png)-->  
 
-[Dedicated Hosts vs Dedicated Instances Private Link](https://drive.google.com/file/d/1GXdeacHzN83KTfu2kZT3vosyTr46tcwj/view?usp=drive_link)
+### [Dedicated Hosts vs Dedicated Instances Private Link](https://drive.google.com/file/d/1GXdeacHzN83KTfu2kZT3vosyTr46tcwj/view?usp=drive_link)
   
 ---
 
 ## EC2 Pricing Use Cases
 
-![EC2 Pricing Use Cases 1 Diagram](../assets/2-EC2/ec2-pricing-use-cases-1.png)
-![EC2 Pricing Use Cases 2 Diagram](../assets/2-EC2/ec2-pricing-use-cases-2.png)
+<!--![EC2 Pricing Use Cases 1 Diagram](../assets/2-EC2/ec2-pricing-use-cases-1.png)
+[EC2 Pricing Use Cases 2 Diagram](../assets/2-EC2/ec2-pricing-use-cases-2.png)-->
 
-[EC2 Pricing Use Cases 1 Private Link](https://drive.google.com/file/d/1ZmJCyTQZMhSAbj70S2kd3ko4TzzuIrRZ/view?usp=drive_link)
-[EC2 Pricing Use Cases 2 Private Link](https://drive.google.com/file/d/1hLnf1N2EclpXjhGNl6sc2aZ0m5EZp0bo/view?usp=drive_link)
+Below are some common use cases for different EC2 pricing options based on workload requirements and cost optimization strategies.
+
+### [EC2 Pricing Use Cases 1 Private Link](https://drive.google.com/file/d/1ZmJCyTQZMhSAbj70S2kd3ko4TzzuIrRZ/view?usp=drive_link) <br>
+### [EC2 Pricing Use Cases 2 Private Link](https://drive.google.com/file/d/1hLnf1N2EclpXjhGNl6sc2aZ0m5EZp0bo/view?usp=drive_link)
 
 ---
 
@@ -712,20 +714,20 @@ You are charged for the NAT Gateway based on usage and data transfer. Always rem
 
 ## Architecture Patterns - AWS EC2 
 
-![EC2 Architecture Patterns1 Diagram](../assets/2-EC2/ec2-architecture-patterns-1.png)
+<!--![EC2 Architecture Patterns1 Diagram](../assets/2-EC2/ec2-architecture-patterns-1.png)
 ![EC2 Architecture Patterns2 Diagram](../assets/2-EC2/ec2-architecture-patterns-2.png)
-![EC2 Architecture Patterns3 Diagram](../assets/2-EC2/ec2-architecture-patterns-3.png)
+![EC2 Architecture Patterns3 Diagram](../assets/2-EC2/ec2-architecture-patterns-3.png)-->
 
-[EC2 Architecture Patterns1 Private Link](https://drive.google.com/file/d/10esaNMoYGuBV18zlm-HN4Jnxb7zDBABH/view?usp=drive_link)
-[EC2 Architecture Patterns2 Private Link](https://drive.google.com/file/d/1jXp-SU5LfzhO7zJyYMcPm-Tyzi28fLLJ/view?usp=drive_link)
-[EC2 Architecture Patterns3 Private Link](https://drive.google.com/file/d/1MmWxZ6WDzm15m7QTIlEGOvt3SsMZBXlg/view?usp=drive_link)
+### [EC2 Architecture Patterns1 Private Link](https://drive.google.com/file/d/10esaNMoYGuBV18zlm-HN4Jnxb7zDBABH/view?usp=drive_link) <br>
+### [EC2 Architecture Patterns2 Private Link](https://drive.google.com/file/d/1jXp-SU5LfzhO7zJyYMcPm-Tyzi28fLLJ/view?usp=drive_link) <br>
+### [EC2 Architecture Patterns3 Private Link](https://drive.google.com/file/d/1MmWxZ6WDzm15m7QTIlEGOvt3SsMZBXlg/view?usp=drive_link)
 
 ---
 
 ## Reference
 
-## [EC2 Quiz](https://www.udemy.com/course/aws-certified-solutions-architect-associate-hands-on/learn/quiz/5346096#overview)
-## [Amazon EC2 Cheatsheet](https://digitalcloud.training/amazon-ec2/)
-## [Amazon VPC Cheatsheet](https://digitalcloud.training/amazon-vpc/)
+### [EC2 Quiz](https://www.udemy.com/course/aws-certified-solutions-architect-associate-hands-on/learn/quiz/5346096#overview)<br>
+### [Amazon EC2 Cheatsheet](https://digitalcloud.training/amazon-ec2/)<br>
+### [Amazon VPC Cheatsheet](https://digitalcloud.training/amazon-vpc/)
 
 ---
