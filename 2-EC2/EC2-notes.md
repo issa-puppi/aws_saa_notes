@@ -679,7 +679,7 @@ You are charged for the NAT Gateway based on usage and data transfer. Always rem
 
 - *Compute Savings Plans*, *EC2 Instance Savings Plans*, and *ML Savings Plans*
 
-## EC2 Spot Instances
+  ## EC2 Spot Instances
 
 - **Spot Instances** one or more EC2 instances
 - **Spot Fleets** a collection of Spot Instances to target capacity 
