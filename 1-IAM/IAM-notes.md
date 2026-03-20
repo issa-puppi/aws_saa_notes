@@ -157,7 +157,8 @@ SCPs are organization-level policies used in AWS Organizations.
 
     * Allow if no denies exist, otherwise IMPLICIT DENY
 
-![Permission Evaluation Flow](../assets/1-IAM/permission-evaluation-flow.png)
+![Permission Evaluation Flow Diagram](../assets/1-IAM/permission-evaluation-flow.png)
+[Permission Evaluation Flow Diagram Private Link](https://drive.google.com/file/d/1LYzD_6GxymOqRbOx-lpOu5pzNdUHtSic/view?usp=drive_link)
 
 ---
 
@@ -322,8 +323,13 @@ IAM policies are JSON documents with:
 
 ## Architecture Patterns - IAM
 
-![IAM Architecture Patterns1](../assets/1-IAM/iam-architecture-patterns-1.png)
-![IAM Architecture Patterns2](../assets/1-IAM/iam-architecture-patterns-2.png)
+<!-- These -->
+
+![IAM Architecture Patterns1 Assets](../assets/1-IAM/iam-architecture-patterns-1.png)
+![IAM Architecture Patterns2 Assets](../assets/1-IAM/iam-architecture-patterns-2.png)
+
+[IAM Architecture Patterns1 Private Link](https://drive.google.com/file/d/1t31KkZIopALSoLC59CwS3N-g1p79P37W/view?usp=drive_link)
+[IAM Architecture Patterns2 Private Link](https://drive.google.com/file/d/1cjYVNKm53xOCQptiZO-rwI1jLw8JeI5i/view?usp=drive_link)
 
 ---
 
