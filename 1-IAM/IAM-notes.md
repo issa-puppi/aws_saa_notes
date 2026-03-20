@@ -141,7 +141,8 @@ SCPs are organization-level policies used in AWS Organizations.
    * If no Allow → IMPLICIT DENY
 3. **Resource-based policy**
 
-   * No Allow → IMPLICIT DENY
+   * No Allow → Move to next step
+   * If Allow → check policy conditions
 4. **Identity-based policy**
 
    * No Allow → IMPLICIT DENY

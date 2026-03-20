@@ -249,15 +249,13 @@ AWS CLI can be used to:
 Instance metadata is accessible **from inside the instance only**.
 
 ### Common Metadata Queries
-    - Instance metadata base URL: `http://169.254.169.254/latest/meta-data/`
-    - Private IP: `/local-ipv4`
-    - Public IP: `/public-ipv4`
 
 ```bash
 http://169.254.169.254/latest/meta-data/ # instance metadata base URL
 /local-ipv4     # private IP
-/public-ipv4 # public IP
+/public-ipv4    # public IP
 ```
+
 ---
 
 ## IMDSv1 vs IMDSv2
@@ -348,7 +346,7 @@ These must be allowed in the **security group**.
 2. Get the AMI ID:
 `curl -H "X-aws-ec2-metadata-token: $TOKEN" http://169.254.169.254/latest/meta-data/ami-id`
 
-# Use metadata with user data to configure the instance
+## Use metadata with user data to configure the instance
 'bash.sh' file in code directory contains a simple HTML code to display instance metadata on a webpage. It uses IMDSv2 to fetch metadata and then creates an HTML page to display it. 
 
 ## Practical Use Cases
@@ -359,3 +357,83 @@ Metadata + user data can be combined to:
 - Display instance info (e.g., in web apps)
 - Automate tagging or configuration logic
 - Customize behavior based on environment
+
+---
+
+## Access Keys 
+
+- **Access Keys** are long term credentials for programmatic access
+  - Less secure than temporary credentials, best to rotate regularly
+  - Should be stored securely and not hardcoded in applications
+  - Saved as plain text in the AWS console, so must be copied immediately
+- **Secret Access Keys** are the secret part of the access key pair
+  - Must be kept confidential
+  - Should never be shared or exposed
+  - Grant same permissions as the access key
+- **IAM Roles** are better as they provide temporary credentials
+
+```bash
+aws configure # prompts for access key, secret key, region, and output format
+aws s3 ls     # example command to list S3 buckets using configured credentials
+aws s3 mb s3://my-bucket # example command to create an S3 bucket using configured credentials
+cat config      # view the contents of the AWS config file
+cat credentials # view the contents of the AWS credentials file
+```
+
+**Very Important:** If credenials file is not remmoved, both access keys will be visible in plain text, which is a security risk. Always remove or secure the credentials file after use.
+
+If you deactivate and then delete the access key, it will no longer be usable. 
+  - *Deactivating* allows you to temporarily disable the key 
+  - *Deleting* allows you to permanently removes it from your account
+
+---
+
+## Status Checks
+
+EC2 instances have two types of status checks:
+1. **System Status Check** → checks the underlying hardware and network <br>
+    (AWS-managed)
+2. **Instance Status Check** → checks the software and configuration of the instance <br> 
+    (customer-managed)
+
+Users can view and create alarms based on these status checks to monitor instance health and receive notifications of issues.
+
+---
+
+## Monitoring
+
+EC2 instances can be monitored using **CloudWatch** for:
+  - CPU utilization 
+  - Disk I/O
+  - Network traffic
+  - Status check failures
+  - Custom application metrics
+
+***CloudWatch Alarms*** can be set up to trigger notifications or automated actions based on specific thresholds.
+
+---
+
+## EC2 Placement Groups
+
+- **Cluster** - groups instances close together in the same AZ for low latency and high throughput
+  - Typically used for toughtly coupled, HPC and big data workloads
+
+![Cluster](scnreenshots/cluster-placement-group.png)
+
+- **Partition** - spreads instances across logical partitions to reduce failure risk
+  - Do not share the underlying hardware within a partition
+  - Typically used for large distributed & replicated workloads 
+  - e.g. Hadoop, Cassandra, Kafka and HDFS
+
+![Partition](screenshots/partition-placement-group.png)
+
+- **Spread** - strictly places a small group of instances
+  - On distinct underlying hardware to reduce correlated failures
+
+![Spread](screenshots/spread-placement-group.png)
+
+**Some Use Cases:**
+
+![Use Cases](screenshots/placement-group-use-cases.png)
+
+---
