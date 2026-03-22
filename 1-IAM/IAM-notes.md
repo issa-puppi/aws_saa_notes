@@ -38,6 +38,7 @@ arn:partition:service:region:account-id:resource-type/resource-id
 ## IAM Groups
 
 * IAM User Groups are collections of users
+  * 5000 user limit per account
 * Used to manage permissions for multiple users at once
 * Policies attached to groups are inherited by all users
 
@@ -52,6 +53,8 @@ arn:partition:service:region:account-id:resource-type/resource-id
 * "Admins" group → full access
   → A user in both inherits both permission sets
 
+**Note:** When an application is attached to a user, it is called a **service account**.
+
 ---
 
 ## Authentication Methods
@@ -59,6 +62,9 @@ arn:partition:service:region:account-id:resource-type/resource-id
 IAM users can authenticate using:
 
 * **Access Keys** → programmatic access (CLI, SDKs, APIs)
+  - **CLI:** Command Line Interface
+  - **SDK:** Software Development Kit
+  - **API:** Application Programming Interface
 * **Passwords** → AWS Management Console
 * **Multi-Factor Authentication (MFA)** → added security layer
 
@@ -131,7 +137,9 @@ SCPs are organization-level policies used in AWS Organizations.
 
 ---
 
-## Permission Evaluation Logic
+## [Permission Evaluation Flow](https://drive.google.com/file/d/1LYzD_6GxymOqRbOx-lpOu5pzNdUHtSic/view?usp=drive_link)
+    
+<!--![Permission Evaluation Flow Diagram](../assets/1-IAM/permission-evaluation-flow.png)-->
 
 ### Order of Evaluation
 
@@ -156,9 +164,6 @@ SCPs are organization-level policies used in AWS Organizations.
 7. **Final Decision**
 
     * Allow if no denies exist, otherwise IMPLICIT DENY
-
-<!--![Permission Evaluation Flow Diagram](../assets/1-IAM/permission-evaluation-flow.png)-->
-### [Permission Evaluation Flow Diagram Private Link](https://drive.google.com/file/d/1LYzD_6GxymOqRbOx-lpOu5pzNdUHtSic/view?usp=drive_link)
 
 ---
 
@@ -255,7 +260,7 @@ Action: service:operation
 
 ## IAM Policies (Structure)
 
-IAM policies are JSON documents with:
+IAM policies are JSON documents that define permissions with:
 
 * **Effect** → Allow / Deny
 * **Action** → what is allowed/denied
@@ -306,36 +311,17 @@ IAM policies are JSON documents with:
 
 ---
 
-## [Exam Cram](https://www.udemy.com/course/aws-certified-solutions-architect-associate-hands-on/learn/lecture/28616888#overview) 
-
-* CLI = command-line interface for AWS
-* IAM users represented by applications are known as **service accounts**
-* 5000 user limit per account
-* Groups manage multiple users
-* Roles are assumed identities with temporary credentials
-* Policies are JSON documents that define permissions
-* Permissions boundaries limit maximum permissions
-* SCPs set organization-wide permission limits
-* Explicit deny overrides everything
-* Requests evaluated in order: Explicit Deny → SCP → Resource-based → Identity-based → Permissions Boundary → Session Policies → Role Session → Allow
-
----
-
-## Architecture Patterns - IAM
-
-<!-- These Images references have been left here as an artifact for the versioning of this document, but the actual images have been removed from the repository and replaced with private links to the new location of the original materials. 
-
-![IAM Architecture Patterns1 Assets](../assets/1-IAM/iam-architecture-patterns-1.png)
-![IAM Architecture Patterns2 Assets](../assets/1-IAM/iam-architecture-patterns-2.png) -->
-
-### [IAM Architecture Patterns1 Private Link](https://drive.google.com/file/d/1t31KkZIopALSoLC59CwS3N-g1p79P37W/view?usp=drive_link) <br>
-### [IAM Architecture Patterns2 Private Link](https://drive.google.com/file/d/1cjYVNKm53xOCQptiZO-rwI1jLw8JeI5i/view?usp=drive_link)
-
----
-
 ## Quick References
 
+### [Exam Cram](https://www.udemy.com/course/aws-certified-solutions-architect-associate-hands-on/learn/lecture/28616888#overview) 
+
+<!--![IAM Architecture Patterns1 Assets](../assets/1-IAM/iam-architecture-patterns-1.png)
+![IAM Architecture Patterns2 Assets](../assets/1-IAM/iam-architecture-patterns-2.png) -->
+
+### [IAM Architecture Patterns](https://drive.google.com/drive/folders/1LgYNYPBjAHFn4hLGs_o8EamyIatiFYYc?usp=drive_link)
+
 ### [IAM Quiz](https://www.udemy.com/course/aws-certified-solutions-architect-associate-hands-on/learn/quiz/5346094#overview)
+
 ### [IAM Cheat Sheet](https://digitalcloud.training/aws-iam/)
 
 ---
