@@ -366,7 +366,7 @@ Session data such as authentication details can be stored and retried using:
 
 ### [ASG & ELB Architectural Patterns Private Link](https://drive.google.com/drive/folders/1CAXbFCIvNFT3s__yGGmJK_xmFT69tDUU?usp=drive_link)
 
-### [Exam Cram](https://drive.google.com/drive/folders/1trzy3C57bU4lpfxE-VnznUMfi2meAa8b?usp=drive_link)
+### [ASG & ELB Exam Cram](https://drive.google.com/drive/folders/1trzy3C57bU4lpfxE-VnznUMfi2meAa8b?usp=drive_link)
 
 ### [ASG & ELB Quiz](https://www.udemy.com/course/aws-certified-solutions-architect-associate-hands-on/learn/quiz/5346098#overview)
 

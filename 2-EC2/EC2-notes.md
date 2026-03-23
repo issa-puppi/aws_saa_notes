@@ -728,7 +728,7 @@ Instance types change frequently as AWS releases new generations and deprecates 
 <!--![EC2 Pricing Use Cases 1 Diagram](../assets/2-EC2/ec2-pricing-use-cases-1.png)
 [EC2 Pricing Use Cases 2 Diagram](../assets/2-EC2/ec2-pricing-use-cases-2.png)-->
 
-### [Exam Cram](https://www.udemy.com/course/aws-certified-solutions-architect-associate-hands-on/learn/lecture/28617490#overview)
+### [EC2 Exam Cram](https://www.udemy.com/course/aws-certified-solutions-architect-associate-hands-on/learn/lecture/28617490#overview)
 
 <!--!
 ## Architecture Patterns - AWS EC2 
