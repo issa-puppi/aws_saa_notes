@@ -318,7 +318,7 @@ IAM policies are JSON documents that define permissions with:
 <!--![IAM Architecture Patterns1 Assets](../assets/1-IAM/iam-architecture-patterns-1.png)
 ![IAM Architecture Patterns2 Assets](../assets/1-IAM/iam-architecture-patterns-2.png) -->
 
-### [IAM Architecture Patterns](https://drive.google.com/drive/folders/1LgYNYPBjAHFn4hLGs_o8EamyIatiFYYc?usp=drive_link)
+### [IAM Architecture Patterns Private Link](https://drive.google.com/drive/folders/1LgYNYPBjAHFn4hLGs_o8EamyIatiFYYc?usp=drive_link)
 
 ### [IAM Quiz](https://www.udemy.com/course/aws-certified-solutions-architect-associate-hands-on/learn/quiz/5346094#overview)
 

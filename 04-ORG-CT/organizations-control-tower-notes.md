@@ -108,7 +108,7 @@
 
 ### [AWS Organizations & Control Tower Exam Cram](https://www.udemy.com/course/aws-certified-solutions-architect-associate-hands-on/learn/lecture/28617776#overview)
 
-### [AWS Organizations & Control Tower Architectural Patterns Private Link](https://drive.google.com/drive/folders/1PMcCkDuGMBQjK6KcIvX88t9m5EOJEWDq?usp=drive_link)
+### [AWS Organizations & Control Tower Architecture Patterns Private Link](https://drive.google.com/drive/folders/1PMcCkDuGMBQjK6KcIvX88t9m5EOJEWDq?usp=drive_link)
 
 ### [AWS Organizations & Control Tower Quiz](https://www.udemy.com/course/aws-certified-solutions-architect-associate-hands-on/learn/quiz/5346100#overview)
 

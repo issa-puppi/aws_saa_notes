@@ -12,11 +12,13 @@ Each module is organized into its own directory, focused on a specific AWS topic
 
 Within each module:
 
-- **`notes.md`**  
+- **`*.notes.md`**  
   Structured notes covering key concepts, explanations, and references to official documentation and external resources
 
 - **`code/`**  
   Scripts, command examples, and lab-based implementations used to reinforce practical understanding
+
+- The final module includes a `quick-reference-glossary.md` that consolidates key links and resources for each topic, serving as a convenient review tool
 
 ---
 
@@ -42,7 +44,7 @@ This repository is intended to:
 
 ---
 
-## Notes
+## Notes & Disclaimers
 
 - Code snippets are provided for educational and reference purposes  
 - Some scripts are intended for AWS-specific environments (e.g., *EC2 user data*) and should be reviewed before production use  
