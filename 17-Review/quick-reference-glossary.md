@@ -90,14 +90,18 @@
 - [Deployment and Management Architecture Patterns Private Link](https://drive.google.com/drive/folders/1YOKMWiyAdK8nkidsm4CHRpNxfjvI3oWq?usp=drive_link)
 - [Deployment and Management Quiz](https://www.udemy.com/course/aws-certified-solutions-architect-associate-hands-on/learn/quiz/5346116#overview)
 - [Cloud Formation Cheat Sheet](https://digitalcloud.training/aws-cloudformation/)
-- [AWS Elastic Beanstalk](https://digitalcloud.training/aws-elastic-beanstalk/)
-- [AWS Config](https://digitalcloud.training/aws-config/)
+- [AWS Elastic Beanstalk Cheat Sheet](https://digitalcloud.training/aws-elastic-beanstalk/)
+- [AWS Config Cheat Sheet](https://digitalcloud.training/aws-config/)
+- [AWS Resource Access Manager Cheat Sheet](https://digitalcloud.training/aws-resource-access-manager/)
+- [AWS Systems Manager Cheat Sheet](https://digitalcloud.training/aws-systems-manager/)
+- [AWS OpsWorks Cheat Sheet](https://digitalcloud.training/aws-opsworks/)
 
 ## 13-Monitor-Log-Audit
 - [Monitoring, Logging, and Auditing Exam Cram](https://www.udemy.com/course/aws-certified-solutions-architect-associate-hands-on/learn/lecture/28619480#overview)
 - [Monitoring, Logging, and Auditing Architecture Patterns Private Link](https://drive.google.com/drive/folders/1xssk3oWW77JrJijlRaEToUHqA9KGqA0R?usp=drive_link)
 - [Monitoring, Logging, and Auditing Quiz](https://www.udemy.com/course/aws-certified-solutions-architect-associate-hands-on/learn/quiz/5346118#overview)
-- [Cloud Watch Cheat](https://digitalcloud.training/amazon-cloudwatch/)
+- [AWS CloudWatch Cheat Sheet](https://digitalcloud.training/amazon-cloudwatch/)
+- [AWS CloudTrail Cheat Sheet](https://digitalcloud.training/aws-cloudtrail/)
 
 ## 14-Security
 - [Security Exam Cram](https://www.udemy.com/course/aws-certified-solutions-architect-associate-hands-on/learn/lecture/28619570#overview)
