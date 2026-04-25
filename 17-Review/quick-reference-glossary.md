@@ -12,21 +12,21 @@
 - [EC2 Exam Cram](https://www.udemy.com/course/aws-certified-solutions-architect-associate-hands-on/learn/lecture/28617490#overview)
 - [EC2 Architecture Patterns Private Link](https://drive.google.com/drive/folders/1v6nN4cwX65CZD11sp6me9NRPO5TjzPMA?usp=drive_link)
 - [EC2 Quiz](https://www.udemy.com/course/aws-certified-solutions-architect-associate-hands-on/learn/quiz/5346096#overview)
-- [Amazon EC2 Cheatsheet](https://digitalcloud.training/amazon-ec2/)
-- [Amazon VPC Cheatsheet](https://digitalcloud.training/amazon-vpc/)
+- [Amazon EC2 Cheat Sheet](https://digitalcloud.training/amazon-ec2/)
+- [Amazon VPC Cheat Sheet](https://digitalcloud.training/amazon-vpc/)
 
 ## 03-ASG-ELB
 - [ELB Use Cases](https://drive.google.com/drive/folders/1trzy3C57bU4lpfxE-VnznUMfi2meAa8b?usp=drive_link)
 - [ASG & ELB Architecture Patterns Private Link](https://drive.google.com/drive/folders/1CAXbFCIvNFT3s__yGGmJK_xmFT69tDUU?usp=drive_link)
 - [ASG & ELB Exam Cram](https://drive.google.com/drive/folders/1trzy3C57bU4lpfxE-VnznUMfi2meAa8b?usp=drive_link)
 - [ASG & ELB Quiz](https://www.udemy.com/course/aws-certified-solutions-architect-associate-hands-on/learn/quiz/5346098#overview)
-- [ASG & ELB Cheat Sheet](https://drive.google.com/drive/folders/1trzy3C57bU4lpfxE-VnznUMfi2meAa8b?usp=drive_link)
+- [ASG & ELB Cheat Sheet](https://digitalcloud.training/auto-scaling-and-elastic-load-balancing/)
 
 ## 04-ORG-CT
 - [AWS Organizations & Control Tower Exam Cram](https://www.udemy.com/course/aws-certified-solutions-architect-associate-hands-on/learn/lecture/28617776#overview)
 - [AWS Organizations & Control Tower Architecture Patterns Private Link](https://drive.google.com/drive/folders/1PMcCkDuGMBQjK6KcIvX88t9m5EOJEWDq?usp=drive_link)
 - [AWS Organizations & Control Tower Quiz](https://www.udemy.com/course/aws-certified-solutions-architect-associate-hands-on/learn/quiz/5346100#overview)
-- [AWS Organizations & Control Tower Cheatsheet](https://digitalcloud.training/aws-organizations/)
+- [AWS Organizations & Control Tower Cheat Sheet](https://digitalcloud.training/aws-organizations/)
 
 ## 05-VPC
 - [Exam Cram - VPC](https://www.udemy.com/course/aws-certified-solutions-architect-associate-hands-on/learn/lecture/28617860#overview)

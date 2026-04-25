@@ -2,7 +2,8 @@
 ---
 
 ## AWS Directory Service
-  - Managed directory services for integrating Microsoft Active Directory with AWS
+  - Managed directory services for integrating Microsoft Active Directory with 
+  - Active Directory is an LDAP **Identity Store** for user authentication and authorization
 
 ### Directory Service Options
   - **AWS Managed Microsoft AD**
@@ -12,12 +13,17 @@
       - Need trust relationships
       - Need schema extensions
       - Need standalone AD in AWS
+    - Can perform schema extensions
+    - Supports trust relationships with on-premises AD
 
   - **AD Connector**
     - Redirects directory requests to an existing on-premises AD
     - Best choice when:
       - You want to use existing AD identities with AWS services
       - You do not need AWS to host the directory
+    - Two sizes:
+      - **Small**: Up to 5,000 users
+      - **Large**: Up to 500,000 users
     - Requires:
       - VPN or Direct Connect
 
@@ -45,10 +51,11 @@
   - Federation allows external identities to access AWS using temporary credentials
 
 ### SAML 2.0 Federation
-  - Used for enterprise federation with identity providers
+  - Used for enterprise federation with **identity providers (IdPs)**
   - Common with:
-    - Active Directory Federation Services (ADFS)
+    - **Active Directory Federation Services (ADFS)**
     - SAML-compatible identity providers
+      - **SAML** = Security Assertion Markup Language
 
   - Flow:
     - User authenticates with IdP
@@ -56,11 +63,11 @@
     - AWS STS returns temporary credentials
 
 ### Web Identity Federation
-  - Used with social or OIDC-compatible identity providers
+  - Used with social or OIDC-compatible (**OpenID Connect**) identity providers
   - AWS recommends using **Amazon Cognito** for most web identity federation use cases
 
 ### IAM Identity Center
-  - Successor to AWS Single Sign-On (SSO)
+  - Successor to **AWS Single Sign-On (SSO)**
   - Provides centralized access management across AWS accounts and applications
   - Identity sources can include:
     - Identity Center directory
@@ -174,6 +181,16 @@
   - `Encrypt AWS service data at rest` → KMS
   - `Need customer control over key policies` → Customer managed KMS key
   - `Delete ability to decrypt imported key material` → Delete imported key material
+
+---
+
+## AWS Keys Comparison
+
+| **Key Type** | **Can View** | **Can Manage** | **Used Only for AWS Account** | **Rotation** |
+|--------------|--------------|----------------|-------------------------------|--------------|
+| **Customer Managed Key** | Yes | Yes | Yes | Optional. Every year recommended | 
+| **AWS Managed Key** | Yes | No | Yes | Required. Every 3 years |
+| **AWS Owned Key** | No | No | No | Varies by service |
 
 ---
 

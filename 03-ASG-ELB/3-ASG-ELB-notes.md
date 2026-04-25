@@ -370,6 +370,6 @@ Session data such as authentication details can be stored and retried using:
 
 ### [ASG & ELB Quiz](https://www.udemy.com/course/aws-certified-solutions-architect-associate-hands-on/learn/quiz/5346098#overview)
 
-### [ASG & ELB Cheat Sheet](https://drive.google.com/drive/folders/1trzy3C57bU4lpfxE-VnznUMfi2meAa8b?usp=drive_link)
+### [ASG & ELB Cheat Sheet](https://digitalcloud.training/auto-scaling-and-elastic-load-balancing/)
 
 ---
